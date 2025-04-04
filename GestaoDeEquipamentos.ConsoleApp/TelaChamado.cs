@@ -2,9 +2,15 @@
 
 class TelaChamado
 {
-    public void AbrirChamado()
+    public string AbrirChamado()
     {
         Console.Clear();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine(); // ADICIONAR TIMER PARA ABRIR O MENU DE CHAMADOS
+        Console.WriteLine();
+        Console.WriteLine();
+
         Console.WriteLine("----------------------------");
         Console.WriteLine("Gestão de Chamados");
         Console.WriteLine("----------------------------");
@@ -19,7 +25,6 @@ class TelaChamado
         string opcaoEscolhida = Console.ReadLine()!;
 
         return opcaoEscolhida;
-
 
     }
 }

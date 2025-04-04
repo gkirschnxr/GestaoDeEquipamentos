@@ -29,7 +29,10 @@ internal class Program
                     break;
 
                 case "5":
-                    telaEquipamento.AbrirChamado();
+                    TelaChamado abrirChamado = new TelaChamado();
+
+                    abrirChamado.AbrirChamado();
+                    break;
 
                 default:
                     Console.WriteLine("Saindo do Programa...");
