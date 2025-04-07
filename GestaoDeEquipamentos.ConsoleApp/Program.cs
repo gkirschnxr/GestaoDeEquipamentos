@@ -29,9 +29,28 @@ internal class Program
                     break;
 
                 case "5":
-                    TelaChamado abrirChamado = new TelaChamado();
+                    TelaChamado telaChamado = new TelaChamado();
 
-                    abrirChamado.AbrirChamado();
+                    string opcaoChamadoEscolhida = telaChamado.ApresentarChamados();
+
+                    switch (opcaoChamadoEscolhida)
+                    {
+                        case "1":
+                            telaChamado.NovoChamado();
+                            break;
+
+                        case "2":
+                            telaChamado.EditarChamado();
+                            break;
+
+                        case "3":
+                            telaChamado.ExcluirChamado();
+                            break;
+
+                        case "4":
+                            telaChamado.VisualizarChamado();
+                            break;
+                    }
                     break;
 
                 default:
@@ -41,6 +60,7 @@ internal class Program
             }
 
             Console.ReadLine();
+            break;
         }
     }
 }
