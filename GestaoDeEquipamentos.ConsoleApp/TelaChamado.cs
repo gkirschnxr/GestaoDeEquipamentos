@@ -1,6 +1,6 @@
 ﻿namespace GestaoDeEquipamentos.ConsoleApp;
 
-class TelaChamado 
+class TelaChamado (TelaEquipamento in telaEquipamento)
 {
     public Chamado[] chamados = new Chamado[100];
     public int contadorChamados;
@@ -48,16 +48,9 @@ class TelaChamado
         Console.Write("Dê uma breve descrição sobre o chamado: ");
         string descricao = Console.ReadLine()!;
 
-        Console.WriteLine("IDs de equipamentos disponíveis:");
-        int[] idsEquipamentos = telaEquipamento.ObterIdsEquipamentos();
-        foreach (int id in idsEquipamentos)
-        {
-            Console.WriteLine($"ID: {id}");
-        }
-
-        Console.Write("Digite o ID do equipamento defeituoso: ");
-        int idEquipamento = GeradorID.GerarIdEquipamento();
-        Console.ReadLine();
+        //Console.Write("Digite o ID do equipamento defeituoso: ");
+        //int idEquipamento = GeradorID.GerarIdEquipamento();
+        //Console.ReadLine();
 
         DateTime dataChamado = DateTime.Now;
 
@@ -69,9 +62,61 @@ class TelaChamado
         Console.WriteLine("Chamado cadastrado com sucesso!");
     }
 
-    internal void EditarChamado()
+    public void EditarChamado()
     {
-        throw new NotImplementedException();
+        Console.Clear();
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine("----------------------------");
+
+        Console.WriteLine("Editando Equipamento...");
+        Console.WriteLine("----------------------------");
+
+        Console.Write("Digite o ID do chamado que deseja editar: ");
+        int IdSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        Console.Write("Digite o motivo do chamado: ");
+        string motivo = Console.ReadLine()!;
+
+        Console.Write("Dê uma breve descrição sobre o chamado: ");
+        string descricao = Console.ReadLine()!;
+
+        //Console.Write("Digite o ID do equipamento defeituoso: ");
+        //int idEquipamento = GeradorID.GerarIdEquipamento();
+        //Console.ReadLine();
+
+        Console.Write("Digite a data de fabricação (dd/MM/yyyy): ");
+        DateTime dataChamado = Convert.ToDateTime(Console.ReadLine());
+
+        Chamado novoChamado = new Chamado(motivo, descricao, idEquipamento, dataChamado);
+
+        bool conseguiuEditar = false;
+
+        for (int i = 0; i < chamados.Length; i++)
+        {
+            if (chamados[i] == null) continue;
+
+            // sobescrever equipamento
+            else if (chamados[i].ID == IdSelecionado)
+            {
+                chamados[i].Motivo = novoChamado.Motivo;
+                chamados[i].Descricao = novoChamado.Descricao;
+                chamados[i].IdEquipamento = novoChamado.IdEquipamento;
+                chamados[i].DataChamado = novoChamado.DataChamado;
+
+                conseguiuEditar = true;
+            }
+        }
+
+        if (!conseguiuEditar)
+        {
+            Console.WriteLine("Houve um erro durante a edição do registro!");
+            return;
+        }
+
+        Console.WriteLine("O registro foi editado com sucesso!");
     }
 
     internal void ExcluirChamado()
