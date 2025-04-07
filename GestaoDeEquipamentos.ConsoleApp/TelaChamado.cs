@@ -1,6 +1,6 @@
 ﻿namespace GestaoDeEquipamentos.ConsoleApp;
 
-class TelaChamado (TelaEquipamento in telaEquipamento)
+class TelaChamado ()
 {
     public Chamado[] chamados = new Chamado[100];
     public int contadorChamados;
@@ -66,11 +66,14 @@ class TelaChamado (TelaEquipamento in telaEquipamento)
     {
         Console.Clear();
         Console.WriteLine("----------------------------");
-        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine("Gestão de Chamados");
         Console.WriteLine("----------------------------");
 
-        Console.WriteLine("Editando Equipamento...");
+        Console.WriteLine("Editando Chamados...");
         Console.WriteLine("----------------------------");
+
+        VisualizarChamado(false);
+
 
         Console.Write("Digite o ID do chamado que deseja editar: ");
         int IdSelecionado = Convert.ToInt32(Console.ReadLine());
@@ -124,8 +127,37 @@ class TelaChamado (TelaEquipamento in telaEquipamento)
         throw new NotImplementedException();
     }
 
-    internal void VisualizarChamado()
+    public void VisualizarChamado(bool exibirTitulo)
     {
-        throw new NotImplementedException();
+        if (exibirTitulo)
+        {
+            Console.Clear();
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("Gestão de Chamados");
+            Console.WriteLine("----------------------------");
+
+            Console.WriteLine("Visualizando Chamados...");
+            Console.WriteLine("----------------------------");
+        }
+
+        Console.WriteLine();
+
+        // Criando tabelas no console:
+        Console.WriteLine(
+            "{0, -10} | {1, -15} |{2, -11} |{3, -15} |{4, -17}",
+            "ID Chamado", "Motivo", "Núm. Chamado", "Descrição", "Data de Abertura"
+            );
+
+        for (int i = 0; i < chamados.Length; i++)
+        {
+            Chamado c = chamados[i];
+
+            if (c == null) continue;
+
+            Console.WriteLine(
+                "{0, -10} | {1, -15} |{2, -11} |{3, -15} |{4, -17} |{5, -10}",
+                c.ID, c.Motivo, c.ObterNumeroSerie(), c.Descricao, c.DataChamado.ToShortDateString()
+                );
+        }
     }
 }
