@@ -1,4 +1,6 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 // apresenta as interacoes pro usuario
 public class TelaEquipamento
