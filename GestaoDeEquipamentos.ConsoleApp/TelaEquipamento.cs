@@ -129,7 +129,7 @@ public class TelaEquipamento
 
         VisualizarEquipamentos(false);
 
-        Console.Write("Digite o ID do registro que deseja selecionar: ");
+        Console.Write("Digite o ID do registro que deseja excluir: ");
         int IdSelecionado = Convert.ToInt32(Console.ReadLine());
 
         bool conseguiuExcluir = false;

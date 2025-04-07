@@ -122,9 +122,42 @@ class TelaChamado ()
         Console.WriteLine("O registro foi editado com sucesso!");
     }
 
-    internal void ExcluirChamado()
+    public void ExcluirChamado()
     {
-        throw new NotImplementedException();
+        Console.Clear();
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("Gestão de Chamados");
+        Console.WriteLine("----------------------------");
+
+        Console.WriteLine("Excluindo Chamado...");
+        Console.WriteLine("----------------------------");
+
+        VisualizarChamado(false);
+
+        Console.Write("Digite o ID do chamado que deseja excluir: ");
+        int IdSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        bool conseguiuExcluir = false;
+
+        for (int i = 0; i < chamados.Length; i++)
+        {
+            if (chamados[i] == null) continue;
+
+            else if (chamados[i].ID == IdSelecionado)
+            {
+                chamados[i] = null!;
+                conseguiuExcluir = true;
+            }
+
+            if (!conseguiuExcluir)
+            {
+                Console.WriteLine("Houve um erro durante a exclusão do chamado.");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("O chamado foi excluído com sucesso!");
+        }
     }
 
     public void VisualizarChamado(bool exibirTitulo)
