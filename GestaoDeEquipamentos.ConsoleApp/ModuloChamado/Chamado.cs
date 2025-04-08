@@ -1,27 +1,27 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+
 public class Chamado
 {
-    public int ID; //sempre algo unico
-    public string Motivo;
+    public int Id;
+    public string Titulo;
     public string Descricao;
-    public int IdEquipamento;
-    public DateTime DataChamado;
+    public Equipamento Equipamento;
+    public DateTime DataAbertura;
 
-    public Chamado(string motivo, string descricao, int idequipamento, DateTime dataChamado)
+    public Chamado(string titulo, string descricao, Equipamento equipamento)
     {
-        Motivo = motivo;
+        Titulo = titulo;
         Descricao = descricao;
-        IdEquipamento = idequipamento;
-        DataChamado = dataChamado;
+        Equipamento = equipamento;
+        DataAbertura = DateTime.Now;
     }
 
-    // regra de negócio
-    public string ObterNumeroSerie()
+    public int ObterTempoDecorrido()
     {
-        // SubString dado um indice, retorna tudo depois do valor ex: ABCDE se o indice for 2, irá retornar DE, o resto
-        // usando dois numeros, ele retorna o valor entre os dois indices, do zero ate o tres
-        string tresPrimeirosCaracteres = Motivo.Substring(0, 3).ToUpper();
+        TimeSpan diferencaTempo = DateTime.Now.Subtract(DataAbertura);
 
-        return $"{tresPrimeirosCaracteres}-{ID}";
+        return diferencaTempo.Days;
     }
 }

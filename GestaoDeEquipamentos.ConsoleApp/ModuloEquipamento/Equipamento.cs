@@ -2,7 +2,7 @@
 
 public class Equipamento
 {
-    public int ID; //sempre algo unico
+    public int Id;
     public string Nome;
     public string Fabricante;
     public decimal PrecoAquisicao;
@@ -16,14 +16,10 @@ public class Equipamento
         DataFabricacao = dataFabricacao;
     }
 
-    // regra de negócio
     public string ObterNumeroSerie()
     {
-        // SubString dado um indice, retorna tudo depois do valor ex: ABCDE se o indice for 2, irá retornar DE, o resto
-        // usando dois numeros, ele retorna o valor entre os dois indices, do zero ate o tres
         string tresPrimeirosCaracteres = Nome.Substring(0, 3).ToUpper();
 
-        return $"{tresPrimeirosCaracteres}-{ID}";
+        return $"{tresPrimeirosCaracteres}-{Id}";
     }
-
 }
