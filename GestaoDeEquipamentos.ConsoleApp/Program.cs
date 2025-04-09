@@ -10,14 +10,12 @@ public class Program
     static void Main(string[] args)
     {
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
-
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+        RepositorioChamado repositorioChamado = new RepositorioChamado();
 
+        TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
         TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioFabricante, repositorioEquipamento);
-
-        TelaChamado telaChamado = new TelaChamado(repositorioEquipamento);
-
-        TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante, repositorioEquipamento);
+        TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
 
         TelaPrincipal telaPrincipal = new TelaPrincipal();
 
@@ -28,6 +26,24 @@ public class Program
             if (opcaoPrincipal == '1')
             {
                 char opcaoEscolhida = telaEquipamento.ApresentarMenu();
+
+                switch (opcaoEscolhida)
+                {
+                    case '1': telaFabricante.CadastrarFabricante(); break;
+
+                    case '2': telaFabricante.EditarFabricante(); break;
+
+                    case '3': telaFabricante.ExcluirFabricante(); break;
+
+                    case '4': telaFabricante.VisualizarFabricantes(true); break;
+
+                    default: break;
+                }
+            }
+
+            else if (opcaoPrincipal == '2')
+            {
+                char opcaoEscolhida = telaChamado.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {
@@ -43,9 +59,9 @@ public class Program
                 }
             }
 
-            else if (opcaoPrincipal == '2')
+            else if (opcaoPrincipal == '3')
             {
-                char opcaoEscolhida = telaChamado.ApresentarMenu();
+                char opcaoEscolhida = telaFabricante.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {
@@ -56,24 +72,6 @@ public class Program
                     case '3': telaChamado.ExcluirChamado(); break;
 
                     case '4': telaChamado.VisualizarChamados(true); break;
-
-                    default: break;
-                }
-            }
-
-            else if (opcaoPrincipal == '3')
-            {
-                char opcaoEscolhida = telaFabricante.ApresentarMenu();
-
-                switch (opcaoEscolhida)
-                {
-                    case '1': telaFabricante.CadastrarFabricante(); break;
-
-                    case '2': telaFabricante.EditarFabricante(); break;
-
-                    case '3': telaFabricante.ExcluirFabricante(); break;
-
-                    case '4': telaFabricante.VisualizarFabricantes(true); break;
 
                     default: break;
                 }
