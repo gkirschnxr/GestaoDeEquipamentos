@@ -49,7 +49,7 @@ public class RepositorioChamado
 
             else if (chamados[i].Id == idChamado)
             {
-                chamados[i] = null;
+                chamados[i] = null!;
 
                 return true;
             }

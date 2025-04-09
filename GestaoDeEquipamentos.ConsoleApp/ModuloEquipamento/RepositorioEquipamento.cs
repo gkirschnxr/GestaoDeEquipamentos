@@ -42,7 +42,7 @@ public class RepositorioEquipamento
 
             else if (equipamentos[i].Id == idEquipamento)
             {
-                equipamentos[i] = null;
+                equipamentos[i] = null!;
 
                 return true;
             }
@@ -69,6 +69,6 @@ public class RepositorioEquipamento
                 return e;
         }
 
-        return null;
+        return null!;
     }
 }

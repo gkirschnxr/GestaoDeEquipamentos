@@ -122,7 +122,7 @@ public class TelaFabricante
 
             Console.WriteLine(
                 "{0, -6} | {1, -12} | {2, -15} | {3, -30} | {4, -15}",
-                f.Id, f.NomeFabricante, f.EmailFabricante, f.TelefoneFabricante
+                f.Id, f.NomeFabricante, f.EmailFabricante, f.TelefoneFabricante, f.QuantidadeEquipamentos
             );
         }
     }
@@ -147,12 +147,7 @@ public class TelaFabricante
         Console.Write("Digite o telefone do fabricante: ");
         string telefone = Console.ReadLine()!.Trim();
 
-        Console.Write("Digite o ID do equipamento associado: ");
-        int idEquipamento = Convert.ToInt32(Console.ReadLine());
-
-        Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
-
-        Fabricante novoFabricante = new Fabricante(nome, email, telefone, equipamentoSelecionado);
+        Fabricante novoFabricante = new Fabricante(nome, email, telefone);
 
         return novoFabricante;
     }

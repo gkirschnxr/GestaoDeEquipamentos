@@ -31,7 +31,7 @@ public class TelaEquipamento
         Console.WriteLine("--------------------------------------------");
 
         Console.Write("Digite um opção válida: ");
-        char opcaoEscolhida = Console.ReadLine()[0];
+        char opcaoEscolhida = Console.ReadLine()![0];
 
         return opcaoEscolhida;
     }
@@ -49,16 +49,16 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Console.Write("Digite o nome do equipamento: ");
-        string nome = Console.ReadLine();
+        string nome = Console.ReadLine()!;
 
         Console.Write("Digite o nome do fabricante do equipamento: ");
-        string nomeFabricante = Console.ReadLine();
+        string nomeFabricante = Console.ReadLine()!;
 
         Console.Write("Digite o e-mail do fabricante: ");
-        string emailFabricante = Console.ReadLine();
+        string emailFabricante = Console.ReadLine()!;
 
         Console.Write("Digite o telefone do fabricante: ");
-        string telefoneFabricante = Console.ReadLine();
+        string telefoneFabricante = Console.ReadLine()!;
 
         Console.Write("Digite o preço de aquisição R$ ");
         decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());
@@ -66,9 +66,13 @@ public class TelaEquipamento
         Console.Write("Digite a data de fabricação do equipamento (dd/MM/yyyy) ");
         DateTime dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
+        int quantidadeEquipamentos = 0;
+
         Equipamento novoEquipamento = new Equipamento(nome, nomeFabricante, precoAquisicao, dataFabricacao);
 
-        Fabricante novoFabricante = new Fabricante(nomeFabricante, emailFabricante, telefoneFabricante, novoEquipamento);
+        Fabricante novoFabricante = new Fabricante(nomeFabricante, emailFabricante, telefoneFabricante);
+
+        quantidadeEquipamentos++;
 
         repositorioEquipamento.CadastrarEquipamento(novoEquipamento);
 
@@ -93,10 +97,10 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Console.Write("Digite o nome do equipamento: ");
-        string nome = Console.ReadLine();
+        string nome = Console.ReadLine()!;
 
         Console.Write("Digite o nome do fabricante equipamento: ");
-        string fabricante = Console.ReadLine();
+        string fabricante = Console.ReadLine()!;
 
         Console.Write("Digite o preço de aquisição R$ ");
         decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());

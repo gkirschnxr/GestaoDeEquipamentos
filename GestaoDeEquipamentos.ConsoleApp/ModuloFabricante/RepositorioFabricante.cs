@@ -42,7 +42,7 @@ public class RepositorioFabricante
 
             else if (fabricantes[i].Id == idFabricante)
             {
-                fabricantes[i] = null;
+                fabricantes[i] = null!;
 
                 return true;
             }
@@ -69,6 +69,6 @@ public class RepositorioFabricante
                 return f;
         }
 
-        return null;
+        return null!;
     }
 }
