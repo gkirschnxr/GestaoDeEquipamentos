@@ -14,7 +14,7 @@ public class Program
         RepositorioChamado repositorioChamado = new RepositorioChamado();
 
         TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
-        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioFabricante, repositorioEquipamento);
+        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento, repositorioFabricante);
         TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
 
         TelaPrincipal telaPrincipal = new TelaPrincipal();

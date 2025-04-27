@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿
+using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
@@ -25,7 +26,6 @@ public class RepositorioEquipamento
                 equipamentos[i].Nome = equipamentoEditado.Nome;
                 equipamentos[i].Fabricante = equipamentoEditado.Fabricante;
                 equipamentos[i].PrecoAquisicao = equipamentoEditado.PrecoAquisicao;
-                equipamentos[i].DataFabricacao = equipamentoEditado.DataFabricacao;
 
                 return true;
             }

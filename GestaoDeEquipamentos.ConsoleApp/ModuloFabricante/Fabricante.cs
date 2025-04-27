@@ -2,46 +2,63 @@
 using System.Net.Mail;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
 public class Fabricante
 {
-    public int Id;
-    public string NomeFabricante;
-    public string EmailFabricante;
-    public string TelefoneFabricante;
-    public Equipamento[] Equipamentos;
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Email { get; set; }
+    public string Telefone { get; set; }
+    public Equipamento[] Equipamentos { get; private set; }
 
-    public Fabricante(string nomeFabricante, string emailFabricante, string telefoneFabricante)
+    public Fabricante(string nome, string email, string telefone)
     {
-        NomeFabricante = nomeFabricante;
-        EmailFabricante = emailFabricante;
-        TelefoneFabricante = telefoneFabricante;
+        Nome = nome;
+        Email = email;
+        Telefone = telefone;
         Equipamentos = new Equipamento[100];
+    }
+    public int QuantidadeEquipamentos
+    {
+        get
+        {
+            int contador = 0;
+
+            for (int i = 0; i < Equipamentos.Length; i++)
+            {
+                if (Equipamentos[i] != null)
+                    contador++;
+            }
+
+            return contador;
+        }
     }
 
     public string Validar()
     {
         string erros = "";
 
-        if (string.IsNullOrWhiteSpace(NomeFabricante))
+        if (string.IsNullOrWhiteSpace(Nome))
             erros += "O campo 'Nome' é obrigatório.\n";
 
-        if (NomeFabricante.Length < 3)
+        if (Nome.Length < 3)
             erros += "O campo 'Nome' precisa conter ao menos 3 caracteres.\n";
 
-        if (string.IsNullOrWhiteSpace(EmailFabricante))
+        if (string.IsNullOrWhiteSpace(Email))
             erros += "O campo 'Email' é obrigatório.\n";
 
-        if (!MailAddress.TryCreate(EmailFabricante, out _))
+        if (!MailAddress.TryCreate(Email, out _))
             erros += "O campo 'Email' deve estar em um formato válido.\n";
 
-        if (string.IsNullOrWhiteSpace(TelefoneFabricante))
+        if (string.IsNullOrWhiteSpace(Telefone))
             erros += "O campo 'Telefone' é obrigatório.\n";
 
-        if (TelefoneFabricante.Length < 12)
+        if (Telefone.Length < 12)
             erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.";
 
         return erros;
     }
+
 
     public void AdicionarEquipamento(Equipamento equipamento)
     {
@@ -70,17 +87,4 @@ public class Fabricante
             }
         }
     }
-    public int ObterQuantidadeEquipamentos()
-    {
-        int contador = 0;
-
-        for (int i = 0; i < Equipamentos.Length; i++)
-        {
-            if (Equipamentos[i] != null)
-                contador++;
-        }
-
-        return contador;
-    }
-
 }

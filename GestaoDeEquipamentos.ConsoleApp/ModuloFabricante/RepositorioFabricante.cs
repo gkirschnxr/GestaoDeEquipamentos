@@ -1,8 +1,7 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
 public class RepositorioFabricante
 {
     public Fabricante[] fabricantes = new Fabricante[100];
@@ -19,13 +18,14 @@ public class RepositorioFabricante
     {
         for (int i = 0; i < fabricantes.Length; i++)
         {
-            if (fabricantes[i] == null) continue;
+            if (fabricantes[i] == null)
+                continue;
 
             else if (fabricantes[i].Id == idFabricante)
             {
-                fabricantes[i].NomeFabricante = fabricanteEditado.NomeFabricante;
-                fabricantes[i].EmailFabricante = fabricanteEditado.EmailFabricante;
-                fabricantes[i].TelefoneFabricante = fabricanteEditado.TelefoneFabricante;
+                fabricantes[i].Nome = fabricanteEditado.Nome;
+                fabricantes[i].Email = fabricanteEditado.Email;
+                fabricantes[i].Telefone = fabricanteEditado.Telefone;
 
                 return true;
             }
@@ -38,12 +38,12 @@ public class RepositorioFabricante
     {
         for (int i = 0; i < fabricantes.Length; i++)
         {
-            if (fabricantes[i] == null) continue;
+            if (fabricantes[i] == null)
+                continue;
 
             else if (fabricantes[i].Id == idFabricante)
             {
                 fabricantes[i] = null!;
-
                 return true;
             }
         }
@@ -60,13 +60,13 @@ public class RepositorioFabricante
     {
         for (int i = 0; i < fabricantes.Length; i++)
         {
-            Fabricante f = fabricantes[i];
+            Fabricante e = fabricantes[i];
 
-            if (f == null)
+            if (e == null)
                 continue;
 
-            else if (f.Id == idFabricante)
-                return f;
+            else if (e.Id == idFabricante)
+                return e;
         }
 
         return null!;
