@@ -88,7 +88,7 @@ public class TelaFabricante
 
         Fabricante fabricanteEditado = ObterDadosFabricante();
 
-        bool conseguiuEditar = repositorioFabricante.EditarFabricante(idFabricante, fabricanteEditado);
+        bool conseguiuEditar = repositorioFabricante.EditarRegistro(idFabricante, fabricanteEditado);
 
         if (!conseguiuEditar)
         {
@@ -116,7 +116,7 @@ public class TelaFabricante
 
         Console.WriteLine();
 
-        bool conseguiuExcluir = repositorioFabricante.ExcluirFabricante(idFabricante);
+        bool conseguiuExcluir = repositorioFabricante.ExcluirRegistro(idFabricante);
 
         if (!conseguiuExcluir)
         {
@@ -143,7 +143,11 @@ public class TelaFabricante
             "Id", "Nome", "Email", "Telefone", "Qtd. Equipamentos"
         );
 
-        Fabricante[] fabricantesCadastrados = repositorioFabricante.SelecionarFabricantes();
+        EntidadeBase[] registros = repositorioFabricante.SelecionarRegistros();
+        Fabricante[] fabricantesCadastrados = new Fabricante[registros.Length];
+
+        for (int i = 0; i < registros.Length; i++)
+            fabricantesCadastrados[i] = (Fabricante)registros[i];
 
         for (int i = 0; i < fabricantesCadastrados.Length; i++)
         {
