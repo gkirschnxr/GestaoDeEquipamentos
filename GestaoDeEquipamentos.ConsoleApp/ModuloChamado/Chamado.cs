@@ -1,10 +1,10 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
-public class Chamado
+public class Chamado : EntidadeBase
 {
-    public int Id { get; set; }
     public string Titulo { get; set; }
     public string Descricao { get; set; }
     public Equipamento Equipamento { get; set; }
@@ -26,5 +26,14 @@ public class Chamado
         Descricao = descricao;
         Equipamento = equipamento;
         DataAbertura = DateTime.Now;
+    }
+
+    public override void AtualizarRegistro(EntidadeBase registroEditado)
+    {
+        Chamado chamadoEditado = (Chamado)registroEditado;
+
+        Titulo = chamadoEditado.Titulo;
+        Descricao = chamadoEditado.Descricao;
+        Equipamento = chamadoEditado.Equipamento;
     }
 }

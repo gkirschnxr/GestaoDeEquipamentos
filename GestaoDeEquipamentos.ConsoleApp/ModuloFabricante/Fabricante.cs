@@ -6,7 +6,6 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 public class Fabricante : EntidadeBase
 {
-    public int Id { get; set; }
     public string Nome { get; set; }
     public string Email { get; set; }
     public string Telefone { get; set; }
@@ -59,7 +58,6 @@ public class Fabricante : EntidadeBase
 
         return erros;
     }
-
 
     public void AdicionarEquipamento(Equipamento equipamento)
     {

@@ -65,7 +65,7 @@ public class TelaFabricante
             return;
         }
 
-        repositorioFabricante.CadastrarFabricante(novoFabricante);
+        repositorioFabricante.CadastrarRegistro(novoFabricante);
 
         Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
     }

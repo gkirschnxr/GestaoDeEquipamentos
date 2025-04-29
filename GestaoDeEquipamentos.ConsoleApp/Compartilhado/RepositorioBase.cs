@@ -1,18 +1,12 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-
-public abstract class EntidadeBase
-{
-    public int Id { get; set; }
-    public abstract void AtualizarRegistro(EntidadeBase registroEditado);
-}
 public abstract class RepositorioBase
 {
     private EntidadeBase[] registros = new EntidadeBase[100];
     private int contadorIds = 0;
 
-    public void CadastrarFabricante(EntidadeBase novoRegistro)
+    public void CadastrarRegistro(EntidadeBase novoRegistro)
     {
         novoRegistro.Id = ++contadorIds;
 
@@ -72,8 +66,6 @@ public abstract class RepositorioBase
 
         return null!;
     }
-
-
 
     private void InserirRegistro(EntidadeBase registro)
     {

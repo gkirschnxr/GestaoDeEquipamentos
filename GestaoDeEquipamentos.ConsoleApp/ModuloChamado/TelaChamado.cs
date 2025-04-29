@@ -55,7 +55,7 @@ public class TelaChamado
 
         Chamado novoChamado = ObterDadosChamado();
 
-        repositorioChamado.CadastrarChamado(novoChamado);
+        repositorioChamado.CadastrarRegistro(novoChamado);
 
         Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
     }
@@ -76,7 +76,7 @@ public class TelaChamado
 
         Chamado novoChamado = ObterDadosChamado();
 
-        bool conseguiuEditar = repositorioChamado.EditarChamado(idChamado, novoChamado);
+        bool conseguiuEditar = repositorioChamado.EditarRegistro(idChamado, novoChamado);
 
         if (!conseguiuEditar)
         {
@@ -102,7 +102,7 @@ public class TelaChamado
         Console.Write("Digite o ID do chamado que deseja excluir: ");
         int idChamado = Convert.ToInt32(Console.ReadLine());
 
-        bool conseguiuExcluir = repositorioChamado.ExcluirChamado(idChamado);
+        bool conseguiuExcluir = repositorioChamado.ExcluirRegistro(idChamado);
 
         if (!conseguiuExcluir)
         {
@@ -131,7 +131,11 @@ public class TelaChamado
             "Id", "Data de Abertura", "Título", "Descrição", "Equipamento", "Tempo Decorrido"
         );
 
-        Chamado[] chamadosCadastrados = repositorioChamado.SelecionarChamados();
+        EntidadeBase[] registros = repositorioChamado.SelecionarRegistros();
+        Chamado[] chamadosCadastrados = new Chamado[registros.Length];
+
+        for (int i = 0; i < registros.Length; i++)
+            chamadosCadastrados[i] = (Chamado)registros[i];
 
         for (int i = 0; i < chamadosCadastrados.Length; i++)
         {
@@ -166,7 +170,7 @@ public class TelaChamado
         Console.Write("Digite o ID do equipamento que deseja selecionar: ");
         int idEquipamento = Convert.ToInt32(Console.ReadLine()!.Trim());
 
-        Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
+        Equipamento equipamentoSelecionado = (Equipamento)repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
 
         Chamado novoChamado = new Chamado(titulo, descricao, equipamentoSelecionado);
 
@@ -187,7 +191,11 @@ public class TelaChamado
             "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
         );
 
-        Equipamento[] equipamentosCadastrados = repositorioEquipamento.SelecionarEquipamentos();
+        EntidadeBase[] registros = repositorioEquipamento.SelecionarRegistros();
+        Equipamento[] equipamentosCadastrados = new Equipamento[registros.Length];
+
+        for (int i = 0; i < registros.Length; i++)
+            equipamentosCadastrados[i] = (Equipamento)registros[i];
 
         for (int i = 0; i < equipamentosCadastrados.Length; i++)
         {

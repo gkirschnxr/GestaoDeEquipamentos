@@ -25,7 +25,7 @@ public class Program
 
             if (opcaoPrincipal == '1')
             {
-                char opcaoEscolhida = telaEquipamento.ApresentarMenu();
+                char opcaoEscolhida = telaFabricante.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {
@@ -43,7 +43,7 @@ public class Program
 
             else if (opcaoPrincipal == '2')
             {
-                char opcaoEscolhida = telaChamado.ApresentarMenu();
+                char opcaoEscolhida = telaEquipamento.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {
@@ -61,7 +61,7 @@ public class Program
 
             else if (opcaoPrincipal == '3')
             {
-                char opcaoEscolhida = telaFabricante.ApresentarMenu();
+                char opcaoEscolhida = telaChamado.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {
