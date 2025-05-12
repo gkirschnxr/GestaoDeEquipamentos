@@ -4,37 +4,33 @@ using System.Net.Mail;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
-public class Fabricante : EntidadeBase
+public class Fabricante : EntidadeBase<Fabricante>
 {
     public string Nome { get; set; }
     public string Email { get; set; }
     public string Telefone { get; set; }
-    public Equipamento[] Equipamentos { get; private set; }
-
-    public Fabricante(string nome, string email, string telefone)
-    {
-        Nome = nome;
-        Email = email;
-        Telefone = telefone;
-        Equipamentos = new Equipamento[100];
-    }
+    public List<Equipamento> Equipamentos { get; set; }
     public int QuantidadeEquipamentos
     {
         get
         {
-            int contador = 0;
-
-            for (int i = 0; i < Equipamentos.Length; i++)
-            {
-                if (Equipamentos[i] != null)
-                    contador++;
-            }
-
-            return contador;
+            return Equipamentos.Count;
         }
     }
 
-    public string Validar()
+    public Fabricante()
+    {
+        Equipamentos = new List<Equipamento>();
+    }
+
+    public Fabricante(string nome, string email, string telefone) : this()
+    {
+        Nome = nome;
+        Email = email;
+        Telefone = telefone;
+    }
+
+    public override string Validar()
     {
         string erros = "";
 
@@ -59,38 +55,21 @@ public class Fabricante : EntidadeBase
         return erros;
     }
 
+
     public void AdicionarEquipamento(Equipamento equipamento)
     {
-        for (int i = 0; i < Equipamentos.Length; i++)
-        {
-            if (Equipamentos[i] == null)
-            {
-                Equipamentos[i] = equipamento;
-                return;
-            }
-        }
+        if (!Equipamentos.Contains(equipamento))
+            Equipamentos.Add(equipamento);
     }
 
     public void RemoverEquipamento(Equipamento equipamento)
     {
-        for (int i = 0; i < Equipamentos.Length; i++)
-        {
-            if (Equipamentos[i] == null)
-                continue;
-
-            else if (Equipamentos[i] == equipamento)
-            {
-                Equipamentos[i] = null!;
-
-                return;
-            }
-        }
+        if (Equipamentos.Contains(equipamento))
+            Equipamentos.Remove(equipamento);
     }
 
-    public override void AtualizarRegistro(EntidadeBase registroEditado)
+    public override void AtualizarRegistro(Fabricante fabricanteEditado)
     {
-        Fabricante fabricanteEditado = (Fabricante)registroEditado;
-
         Nome = fabricanteEditado.Nome;
         Email = fabricanteEditado.Email;
         Telefone = fabricanteEditado.Telefone;
