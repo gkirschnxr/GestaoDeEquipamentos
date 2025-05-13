@@ -1,5 +1,7 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 using GestaoDeEquipamentos.ConsoleApp.Util;
+using System.Text;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
 
@@ -7,29 +9,45 @@ class Program
 {
     static void Main(string[] args)
     {
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        // criar server web
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        while (true)
+        WebApplication app = builder.Build();
+
+        app.MapGet("/", PaginaInicial);
+
+        app.MapGet("/fabricantes/visualizar", VisualizarFabricantes);
+
+        app.Run();
+    }
+
+    static Task PaginaInicial(HttpContext context)
+    {
+        string conteudo = File.ReadAllText("Html/PaginaInicial.html");
+
+        return context.Response.WriteAsync(conteudo);
+    }
+
+    static Task VisualizarFabricantes(HttpContext context)
+    {
+        ContextoDados contextoDados = new ContextoDados();
+        IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
+
+        string conteudo = File.ReadAllText("ModuloFabricante/Html/Visualizar.html");
+
+        StringBuilder sb = new StringBuilder(conteudo);
+
+        foreach (Fabricante f in repositorioFabricante.SelecionarRegistros())
         {
-            telaPrincipal.ApresentarMenuPrincipal();
+            string itemLista = $"<li>{f.ToString()}</li> #fabricante#";
 
-            ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
-
-            char opcaoEscolhida = telaSelecionada.ApresentarMenu();
-
-            switch (opcaoEscolhida)
-            {
-                case '1': telaSelecionada.CadastrarRegistro(); break;
-
-                case '2': telaSelecionada.EditarRegistro(); break;
-
-                case '3': telaSelecionada.ExcluirRegistro(); break;
-
-                case '4': telaSelecionada.VisualizarRegistros(true); break;
-
-                default: break;
-            }
-
+            sb.Replace("#fabricante#", itemLista);
         }
+
+        sb.Replace("#fabricante#", "");
+
+        string conteudoString = sb.ToString();
+
+        return context.Response.WriteAsync(conteudoString);
     }
 }
