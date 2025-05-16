@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Include="Html\PaginaInicial.html" />
-    <Page Include="ModuloFabricante\Html\Visualizar.html" />
+    <Page Include="Compartilhado\Html\Notificacao.html" />
+    <Page Include="Compartilhado\Html\PaginaInicial.html" />
   </ItemGroup>
 
 </Project>

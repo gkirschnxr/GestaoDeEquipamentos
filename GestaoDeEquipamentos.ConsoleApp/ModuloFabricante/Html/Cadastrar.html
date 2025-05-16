@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title> Cadastro de Fabricante - Gestão de Equipamentos </title>
+    </head>
+
+    <body>
+        <h1>Gestão de Equipamentos</h1>
+
+        <h3>Visualização de Fabricantes</h3>
+
+        <!--formulários de dados-->
+        <form action="/fabricantes/cadastrar" method="post">
+
+            <!--rotúlo de um campo que pode ser preenchido pelo usuário-->
+            <label>Nome do Fabricante:</label>
+
+            <!--entrada de dados do usuário, o rótulo é a label-->
+            <input type="text" name="nome" />
+
+            <!-- quebra de linha -->
+            <br />
+
+            <label>Email do Fabricante:</label>
+            <input type="text" name="email" />
+
+            <br />
+
+            <label>Telefone do Fabricante:</label>
+            <input type="text" name="telefone" />
+
+            <!-- cria uma linha horizontal -->
+            <hr />
+
+            <button type="submit">Gravar</button>
+        </form>
+    </body>
+
+</html>
