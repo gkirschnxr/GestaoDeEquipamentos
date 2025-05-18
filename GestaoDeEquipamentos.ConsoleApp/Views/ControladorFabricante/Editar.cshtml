@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+@{ Fabricante f = ViewBag.Fabricante; }
+
+<!DOCTYPE html>
 
 <html>
 
@@ -12,23 +16,23 @@
 
         <h3>Edição de Fabricantes</h3>
 
-        <form action="/fabricantes/editar/#id#" method="post">
+        <form action="/fabricantes/editar/@f.Id" method="post">
 
             <label>Nome do Fabricante:</label>
             <br />
-            <input type="text" name="nome" value="#nome#"/>
+            <input type="text" name="nome" value="@f.Nome"/>
 
             <br />
 
             <label>Email do Fabricante:</label>
             <br />
-            <input type="text" name="email" value="#email#"/>
+            <input type="text" name="email" value="@f.Email"/>
 
             <br />
 
             <label>Telefone do Fabricante:</label>
             <br />
-            <input type="text" name="telefone" value="#telefone#"/>
+            <input type="text" name="telefone" value="@f.Telefone"/>
 
             <hr />
 

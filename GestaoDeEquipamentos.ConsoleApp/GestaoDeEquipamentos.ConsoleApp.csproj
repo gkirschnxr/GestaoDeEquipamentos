@@ -8,8 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Include="Compartilhado\Html\Notificacao.html" />
-    <Page Include="Compartilhado\Html\PaginaInicial.html" />
+    <Content Remove="Views\Shared\Notificacao.cshtml" />
+    <Content Remove="Views\Shared\PaginaInicial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\Notificacao.cshtml" />
+    <None Include="Views\Shared\PaginaInicial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Views\Shared\Notificacao.cshtml" />
+    <Page Include="Views\Shared\PaginaInicial.cshtml" />
   </ItemGroup>
 
 </Project>
