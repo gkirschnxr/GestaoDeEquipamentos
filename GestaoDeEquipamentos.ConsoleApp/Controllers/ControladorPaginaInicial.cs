@@ -7,8 +7,6 @@ public class ControladorPaginaInicial : Controller
 {
     public IActionResult PaginaInicial()
     {
-        string conteudo = System.IO.File.ReadAllText("Compartilhado/Html/PaginaInicial.html");
-
-        return Content(conteudo, "text/html");
+        return View("PaginaInicial");
     }
 }

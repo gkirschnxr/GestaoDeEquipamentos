@@ -76,6 +76,8 @@ public class ControladorFabricante : Controller
 
         Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarRegistroPorId(id);
 
+        ViewBag.Fabricantes = fabricanteSelecionado;
+
         return View("Excluir");
     }
 
