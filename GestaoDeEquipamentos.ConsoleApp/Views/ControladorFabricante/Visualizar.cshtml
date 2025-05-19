@@ -1,8 +1,7 @@
-﻿@using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
+﻿@using GestaoDeEquipamentos.ConsoleApp.Models
+@using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 
-@{
-    List<Fabricante> fabricantes = ViewBag.Fabricantes;
-}
+@model VisualizarFabricantesViewModel;
 
 <!DOCTYPE html>
 
@@ -25,7 +24,7 @@
         <hr />
 
         <ul>
-            @foreach (Fabricante f in fabricantes)
+            @foreach (DetalhesFabricantesViewModel f in Model.Registros)
             {
             <li>
                 @f.ToString() / <a href="/fabricantes/editar/@f.Id"> Editar </a>
