@@ -1,7 +1,61 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Extensions;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Models;
+
+public abstract class FormularioEquipamentoViewModel
+{
+    public string Nome { get; set; }
+    public decimal PrecoAquisicao { get; set; }
+    public DateTime DataFabricacao { get; set; }
+
+    /* Passando apenas o ID do fabricante para nao chamar o Fabricante completo para o método
+       Pega-se uma unica informacao identificadora para depois recuperar                   */
+    public int FabricanteId { get; set; }
+
+    public List<SelecionarFabricanteViewModel> FabricantesDisponiveis { get; set; }
+
+    protected FormularioEquipamentoViewModel()
+    {
+        FabricantesDisponiveis = new List<SelecionarFabricanteViewModel>();
+    }
+}
+
+public class SelecionarFabricanteViewModel
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+
+    public SelecionarFabricanteViewModel(int id, string nome)
+    {
+        Nome = nome;
+        Id = id;
+    }
+}
+
+public class CadastrarEquipamentoViewModel : FormularioEquipamentoViewModel
+{
+    public CadastrarEquipamentoViewModel() { }
+    public CadastrarEquipamentoViewModel(List<Fabricante> fabricantes) : this()
+    {
+        foreach (var f in fabricantes)
+        {
+            var selecionarVM = new SelecionarFabricanteViewModel(f.Id, f.Nome);
+
+            FabricantesDisponiveis.Add(selecionarVM);
+        }
+    }
+}
+
+public class EditarEquipamentoViewModel : FormularioEquipamentoViewModel
+{
+    public int Id { get; set; }
+    public EditarEquipamentoViewModel()
+    {
+        
+    }
+}
 
 public class VisualizarEquipamentosViewModel
 {
