@@ -51,9 +51,23 @@ public class CadastrarEquipamentoViewModel : FormularioEquipamentoViewModel
 public class EditarEquipamentoViewModel : FormularioEquipamentoViewModel
 {
     public int Id { get; set; }
-    public EditarEquipamentoViewModel()
+    public EditarEquipamentoViewModel() { }
+
+    public EditarEquipamentoViewModel(int id, string nome, decimal precoAquisicao, 
+                                      DateTime dataFabricacao, int fabricanteId, List<Fabricante> fabricantes)
     {
-        
+        Id = id;
+        Nome = nome;
+        PrecoAquisicao = precoAquisicao;
+        DataFabricacao = dataFabricacao;
+        FabricanteId = fabricanteId;
+
+        foreach (var f in fabricantes)
+        {
+            var selecionarVM = new SelecionarFabricanteViewModel(f.Id, f.Nome);
+
+            FabricantesDisponiveis.Add(selecionarVM);
+        }
     }
 }
 

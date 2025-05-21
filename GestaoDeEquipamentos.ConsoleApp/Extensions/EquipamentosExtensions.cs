@@ -9,7 +9,7 @@ public static class EquipamentosExtensions
     public static Equipamento ParaEntidade(this FormularioEquipamentoViewModel formularioVM, 
                                                 List<Fabricante> fabricantes)
     {
-        Fabricante fabricanteSelecionado = null;
+        Fabricante fabricanteSelecionado = null!;
 
         foreach (var f in fabricantes)
         {
