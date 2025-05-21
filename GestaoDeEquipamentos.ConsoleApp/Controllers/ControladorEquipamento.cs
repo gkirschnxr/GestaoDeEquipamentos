@@ -96,6 +96,31 @@ public class ControladorEquipamento : Controller
     }
 
 
+    [HttpGet("excluir/{id:int}")]
+    public IActionResult Excluir([FromRoute] int id)
+    {
+        var equipamentoSelecionado = repositorioEquipamento.SelecionarRegistroPorId(id);
+
+        var excluirVM = new ExcluirEquipamentoViewModel(id, equipamentoSelecionado.Nome);
+
+        return View(excluirVM);
+    }
+
+
+    [HttpPost("excluir/{id:int}")]
+    public IActionResult ExcluirConfirmar([FromRoute] int id)
+    {
+        repositorioEquipamento.ExcluirRegistro(id);
+
+        var notificacaoVM = new NotificacaoViewModel(
+        "Equipamento Excluído!",
+        $"O registro foi excluído com sucesso!"
+        );
+
+        return View("Notificacao", notificacaoVM);
+    }
+
+
     [HttpGet("visualizar")]
     public IActionResult Visualizar()
     {

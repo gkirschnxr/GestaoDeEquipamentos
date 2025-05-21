@@ -71,6 +71,17 @@ public class EditarEquipamentoViewModel : FormularioEquipamentoViewModel
     }
 }
 
+public class ExcluirEquipamentoViewModel
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+
+    public ExcluirEquipamentoViewModel(int id, string nome)
+    {
+        Id = id;
+        Nome = nome;
+    }
+}
 public class VisualizarEquipamentosViewModel
 {
     public List<DetalhesEquipamentoViewModel> Registros { get; set; }
