@@ -25,7 +25,7 @@ public class ControladorEquipamento : Controller
     [HttpGet("cadastrar")]
     public IActionResult Cadastrar()
     {
-        var fabricantes = repositorioFabricante!.SelecionarRegistros();
+        var fabricantes = repositorioFabricante.SelecionarRegistros();
 
         var cadastrarVM = new CadastrarEquipamentoViewModel(fabricantes);
 

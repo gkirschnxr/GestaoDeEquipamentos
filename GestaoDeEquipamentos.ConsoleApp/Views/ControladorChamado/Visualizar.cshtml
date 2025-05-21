@@ -1,0 +1,39 @@
+﻿@using GestaoDeEquipamentos.ConsoleApp.Models
+
+@model VisualizarChamadoViewModel;
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Visualização de Chamados - Gestão de Equipamentos </title>
+</head>
+
+<body>
+    <h1>Gestão de Equipamentos</h1>
+
+    <h3>Visualização de Chamados</h3>
+
+    <hr />
+
+    <a href="/">Página Inicial</a> /
+    <a href="/chamados/cadastrar">Cadastrar Novo Chamado</a>
+
+    <hr />
+
+    <ul>
+        @foreach (var c in Model.Registros)
+        {
+            <li>
+                @c.ToString() / <a href="/chamados/editar/@c.Id"> Editar </a>
+                / <a href="/chamados/excluir/@c.Id"> Excluir </a>
+            </li>
+        }
+    </ul>
+</body>
+
+</html>
+
+
