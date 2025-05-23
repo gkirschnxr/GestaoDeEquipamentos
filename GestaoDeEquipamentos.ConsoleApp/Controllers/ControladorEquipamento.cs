@@ -36,16 +36,15 @@ public class ControladorEquipamento : Controller
     [HttpPost("cadastrar")]
     public IActionResult Cadastrar(CadastrarEquipamentoViewModel cadastrarVM)
     {
-        var fabricantes = repositorioFabricante!.SelecionarRegistros();
+        var fabricantes = repositorioFabricante.SelecionarRegistros();
 
         Equipamento equipamento = cadastrarVM.ParaEntidade(fabricantes);
 
-        repositorioEquipamento!.CadastrarRegistro(equipamento);
+        repositorioEquipamento.CadastrarRegistro(equipamento);
 
         var notificacaoVM = new NotificacaoViewModel(
             "Equipamento Cadastrado!",
-            $"O registro \"{equipamento.Nome}\" foi cadastrado com sucesso!"
-            );
+            $"O registro \"{equipamento.Nome}\" foi cadastrado com sucesso!");
 
         return View("Notificacao", notificacaoVM);
     }

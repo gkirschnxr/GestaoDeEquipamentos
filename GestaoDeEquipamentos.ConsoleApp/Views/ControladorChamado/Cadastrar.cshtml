@@ -1,5 +1,57 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using GestaoDeEquipamentos.ConsoleApp.Models
+@using GestaoDeEquipamentos.ConsoleApp.ModuloChamado
+
+@model CadastrarChamadoViewModel
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Cadastro de Chamado - Gestão de Equipamentos </title>
+</head>
+
+<body>
+    <h1>Gestão de Equipamentos</h1>
+
+    <hr />
+
+    <a href="/">Pagina Inicial</a> /
+    <a href="/chamados/visualizar">Visualizar Chamados</a>
+
+    <hr />
+
+    <h3>Cadastro de Chamado</h3>
+
+    <form action="/chamados/cadastrar" method="post">
+
+        <label for="Titulo">Título do Chamado:</label>
+        <br />
+        <input type="text" name="Titulo" id="Titulo" />
+
+        <br />
+
+        <label for="Descricao">Informe uma descrição para o chamado:</label>
+        <br />
+        <textarea name="Descricao" id="Descricao"></textarea>
+
+        <br />
+
+        <label for="EquipamentoId">Selecione o Equipamento com defeito:</label>
+        <br />
+        <select name="EquipamentoId" id="EquipamentoId">
+            @foreach (var e in Model.EquipamentosDisponiveis)
+            {
+                <option value="@e.Id">@e.Nome</option>
+            }
+        </select>
+
+        <hr />
+
+        <button type="submit">Gravar</button>
+
+    </form>
+</body>
+</html>
+

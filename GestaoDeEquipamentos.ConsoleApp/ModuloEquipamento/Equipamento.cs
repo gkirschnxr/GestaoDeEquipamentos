@@ -17,7 +17,7 @@ public class Equipamento : EntidadeBase<Equipamento>
     {
         get
         {
-            string tresPrimeirosCaracteres = Nome.Substring(0, 3).ToUpper();
+            string tresPrimeirosCaracteres = Nome;
 
             return $"{tresPrimeirosCaracteres}-{Id}";
         }

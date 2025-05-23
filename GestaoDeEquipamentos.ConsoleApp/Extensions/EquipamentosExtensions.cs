@@ -22,7 +22,7 @@ public static class EquipamentosExtensions
             formularioVM.Nome,
             formularioVM.PrecoAquisicao,
             formularioVM.DataFabricacao,
-            fabricanteSelecionado!);
+            fabricanteSelecionado);
     }
 
 

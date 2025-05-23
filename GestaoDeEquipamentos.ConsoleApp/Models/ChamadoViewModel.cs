@@ -8,8 +8,6 @@ public abstract class FormularioChamadoViewModel
 {
     public string Titulo { get; set; }
     public string Descricao { get; set; }
-    public DateTime DataAbertura { get; set; }
-    public int TempoDecorrido { get; set; }
     public int EquipamentoId { get; set; }
     public List<SelecionarEquipamentoViewModel> EquipamentosDisponiveis { get; set; }
 
@@ -34,7 +32,7 @@ public class SelecionarEquipamentoViewModel
 public class CadastrarChamadoViewModel : FormularioChamadoViewModel
 {
     public CadastrarChamadoViewModel() { }
-    public CadastrarChamadoViewModel(List<Equipamento> equipamentos) : this()
+    public CadastrarChamadoViewModel(List<Equipamento> equipamentos)
     {
         foreach (var e in equipamentos)
         {
@@ -42,6 +40,46 @@ public class CadastrarChamadoViewModel : FormularioChamadoViewModel
 
             EquipamentosDisponiveis.Add(selecionarVM);
         }
+    }
+}
+
+public class EditarChamadoViewModel : FormularioChamadoViewModel
+{
+    public int Id { get; set; }
+
+    public EditarChamadoViewModel() { }
+
+    public EditarChamadoViewModel(
+        int id,
+        string titulo,
+        string descricao,
+        int equipamentoId,
+        List<Equipamento> equipamentos
+    )
+    {
+        Id = id;
+        Titulo = titulo;
+        Descricao = descricao;
+        EquipamentoId = equipamentoId;
+
+        foreach (var equipamento in equipamentos)
+        {
+            var selecionarVM = new SelecionarEquipamentoViewModel(equipamento.Id, equipamento.Nome);
+
+            EquipamentosDisponiveis.Add(selecionarVM);
+        }
+    }
+}
+
+public class ExcluirChamadoViewModel
+{
+    public int Id { get; set; }
+    public string Titulo { get; set; }
+
+    public ExcluirChamadoViewModel(int id, string titulo)
+    {
+        Id = id;
+        Titulo = titulo;
     }
 }
 
@@ -60,11 +98,6 @@ public class VisualizarChamadoViewModel
             Registros.Add(detalhesVM);
         }
     }
-}
-
-public class CadastrarChamadoViewModel
-{
-
 }
 
 public class DetalhesChamadoViewModel

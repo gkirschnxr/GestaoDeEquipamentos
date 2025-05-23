@@ -37,7 +37,7 @@ public class SelecionarFabricanteViewModel
 public class CadastrarEquipamentoViewModel : FormularioEquipamentoViewModel
 {
     public CadastrarEquipamentoViewModel() { }
-    public CadastrarEquipamentoViewModel(List<Fabricante> fabricantes) : this()
+    public CadastrarEquipamentoViewModel(List<Fabricante> fabricantes)
     {
         foreach (var f in fabricantes)
         {
